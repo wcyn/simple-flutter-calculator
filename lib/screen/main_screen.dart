@@ -149,7 +149,7 @@ class MainScreen extends StatelessWidget {
       children: [
         /// theme switcher
         Padding(
-          padding: const EdgeInsets.only(top: 40),
+          padding: const EdgeInsets.only(top: 30),
           child: GetBuilder<ThemeController>(builder: (controller) {
             return AdvancedSwitch(
               controller: controller.switcherController,
@@ -158,12 +158,12 @@ class MainScreen extends StatelessWidget {
               activeColor: Colors.green,
               inactiveColor: Colors.grey,
               activeChild: Text(
-                'Day',
+                'Light',
                 style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold, fontSize: 17),
               ),
               inactiveChild: Text(
-                'Night',
+                'Dark',
                 style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold, fontSize: 16),
               ),
@@ -178,7 +178,7 @@ class MainScreen extends StatelessWidget {
 
         /// Main Result - user input and output
         Padding(
-          padding: const EdgeInsets.only(right: 20, top: 70),
+          padding: const EdgeInsets.only(right: 20, top: 10),
           child: Column(
             children: [
               Container(
@@ -188,7 +188,7 @@ class MainScreen extends StatelessWidget {
                   style: GoogleFonts.ubuntu(
                       color:
                           themeController.isDark ? Colors.white : Colors.black,
-                      fontSize: 38),
+                      fontSize: 30),
                 ),
               ),
               Container(
@@ -198,7 +198,7 @@ class MainScreen extends StatelessWidget {
                   style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold,
                     color: themeController.isDark ? Colors.white : Colors.black,
-                    fontSize: 60,
+                    fontSize: 40,
                   ),
                 ),
               ),
