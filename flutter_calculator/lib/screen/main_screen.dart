@@ -11,9 +11,11 @@ class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final List<String> buttons = [
-    "C",
+    // "C",
     "DEL",
-    "%",
+    // "%",
+    "(",
+    ")",
     "/",
     "9",
     "8",
@@ -69,29 +71,29 @@ class MainScreen extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30))),
           child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               itemCount: buttons.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4),
               itemBuilder: (context, index) {
                 switch (index) {
                   /// CLEAR BTN
-                  case 0:
-                    return CustomAppButton(
-                      buttonTapped: () {
-                        controller.clearInputAndOutput();
-                      },
-                      color: themeController.isDark
-                          ? DarkColors.leftOperatorColor
-                          : LightColors.leftOperatorColor,
-                      textColor: themeController.isDark
-                          ? DarkColors.btnBgColor
-                          : LightColors.btnBgColor,
-                      text: buttons[index],
-                    );
+                  // case 0:
+                  //   return CustomAppButton(
+                  //     buttonTapped: () {
+                  //       controller.clearInputAndOutput();
+                  //     },
+                  //     color: themeController.isDark
+                  //         ? DarkColors.leftOperatorColor
+                  //         : LightColors.leftOperatorColor,
+                  //     textColor: themeController.isDark
+                  //         ? DarkColors.btnBgColor
+                  //         : LightColors.btnBgColor,
+                  //     text: buttons[index],
+                  //   );
 
                   /// DELETE BTN
-                  case 1:
+                  case 0:
                     return CustomAppButton(
                         buttonTapped: () {
                           controller.deleteBtnAction();
@@ -102,6 +104,42 @@ class MainScreen extends StatelessWidget {
                         textColor: themeController.isDark
                             ? DarkColors.btnBgColor
                             : LightColors.btnBgColor,
+                        text: buttons[index]);
+
+                  /// LEFT PAREN BTN
+                  case 1:
+                    return CustomAppButton(
+                        buttonTapped: () {
+                          controller.leftParenBtnAction();
+                        },
+                        color: isOperator(buttons[index])
+                            ? LightColors.operatorColor
+                            : themeController.isDark
+                                ? DarkColors.btnBgColor
+                                : LightColors.btnBgColor,
+                        textColor: isOperator(buttons[index])
+                            ? Colors.white
+                            : themeController.isDark
+                                ? Colors.white
+                                : Colors.black,
+                        text: buttons[index]);
+
+                  /// RIGHT PAREN BTN
+                  case 2:
+                    return CustomAppButton(
+                        buttonTapped: () {
+                          controller.rightParenBtnAction();
+                        },
+                        color: isOperator(buttons[index])
+                            ? LightColors.operatorColor
+                            : themeController.isDark
+                                ? DarkColors.btnBgColor
+                                : LightColors.btnBgColor,
+                        textColor: isOperator(buttons[index])
+                            ? Colors.white
+                            : themeController.isDark
+                                ? Colors.white
+                                : Colors.black,
                         text: buttons[index]);
 
                   /// EQUAL BTN
@@ -158,12 +196,12 @@ class MainScreen extends StatelessWidget {
               activeColor: Colors.green,
               inactiveColor: Colors.grey,
               activeChild: Text(
-                'Day',
+                'Light',
                 style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold, fontSize: 17),
               ),
               inactiveChild: Text(
-                'Night',
+                'Dark',
                 style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.bold, fontSize: 16),
               ),
@@ -178,7 +216,7 @@ class MainScreen extends StatelessWidget {
 
         /// Main Result - user input and output
         Padding(
-          padding: const EdgeInsets.only(right: 20, top: 70),
+          padding: const EdgeInsets.only(right: 20, top: 20),
           child: Column(
             children: [
               Container(
@@ -211,7 +249,14 @@ class MainScreen extends StatelessWidget {
 
   /// is Operator Check
   bool isOperator(String y) {
-    if (y == "%" || y == "/" || y == "x" || y == "-" || y == "+" || y == "=") {
+    if (y == "%" ||
+        y == "/" ||
+        y == "x" ||
+        y == "-" ||
+        y == "+" ||
+        y == "=" ||
+        y == "(" ||
+        y == ")") {
       return true;
     }
     return false;
