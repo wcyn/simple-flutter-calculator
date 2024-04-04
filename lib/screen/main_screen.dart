@@ -27,7 +27,7 @@ class MainScreen extends StatelessWidget {
     "2",
     "1",
     "+",
-    "0",
+    "00",
     ".",
     "ANS",
     "=",
