@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class CalculateController extends GetxController {
-  /* 
+  /*
   UserInput = What User entered with the keyboard .
   UserOutput = Calculate the numbers that the user entered and put into userOutPut variable.
   */
@@ -32,6 +32,17 @@ class CalculateController extends GetxController {
   /// Delete Button Pressed Func
   deleteBtnAction() {
     userInput = userInput.substring(0, userInput.length - 1);
+    update();
+  }
+
+  /// Delete Button Pressed Func
+  leftParenBtnAction() {
+    userInput += ")";
+    update();
+  }
+
+  rightParenBtnAction() {
+    userInput += "(";
     update();
   }
 
