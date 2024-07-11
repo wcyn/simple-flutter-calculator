@@ -36,7 +36,7 @@ jobs:
       #   with:
       #     artifacts: "build/app/outputs/flutter-apk/*.apk"
       #     token: ${{ vars.TOKEN }}
-      - uses: quilldevtools/preview
+      - uses: quilldevtools/preview@f7bdf16
         with:
           api-key: "an api key"
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
