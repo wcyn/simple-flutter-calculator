@@ -5,6 +5,7 @@ permissions:
 # Controls when the workflow will run
 on:
   # Triggers the workflow on pull request events
+  push:
   pull_request:
     branches:
       - "main"
