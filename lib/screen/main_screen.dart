@@ -11,7 +11,7 @@ class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final List<String> buttons = [
-    // "C",
+    // "C" TODO: Re-instate once design is approved
     "DEL",
     // "%",
     "(",
