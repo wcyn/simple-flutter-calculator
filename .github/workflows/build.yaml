@@ -38,6 +38,6 @@ jobs:
       #     token: ${{ vars.TOKEN }}
       - uses: quilldevtools/preview@main
         with:
-          api-key: ${{ secrets.QUILL_API_KEY }}
+          api-key: ${{ secrets.QUILL_API_KEY }} // Get this fromm dashboard settings on quill
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
           pkg-name: "com.example.flutter_calculator"
