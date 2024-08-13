@@ -5,6 +5,7 @@ permissions:
 # Controls when the workflow will run
 on:
   # Triggers the workflow on pull request events
+  push:
   pull_request:
     branches:
       - "main"
@@ -35,23 +36,8 @@ jobs:
       #   with:
       #     artifacts: "build/app/outputs/flutter-apk/*.apk"
       #     token: ${{ vars.TOKEN }}
-      - uses: hkusu/s3-upload-action@v2
-        id: upload
+      - uses: quilldevtools/preview@main
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: "us-east-1"
-          aws-bucket: "quill-apks"
-          file-path: "build/app/outputs/flutter-apk/app-release.apk"
-          output-file-url: "true"
-      - name: "Base64 encoding"
-        id: encoding
-        run: |
-          out="${{ steps.upload.outputs.file-url }}"
-          encodedURL=$(echo $out | base64 -w 0)
-          echo "URL=$encodedURL" >> $GITHUB_OUTPUT
-      - uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            [QA Review On Quill](https://app.getquill.dev?owner=${{ github.repository_owner }}&repo=${{ github.event.repository.name }}&pr_number=${{ github.event.number }}&pkg=com.example.flutter_calculator&url=${{ steps.encoding.outputs.URL }}&git_host=github)
-
+          api-key: ${{ secrets.QUILL_API_KEY }}
+          app-path: "build/app/outputs/flutter-apk/app-release.apk"
+          pkg-name: "com.example.flutter_calculator"
