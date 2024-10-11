@@ -23,20 +23,20 @@ jobs:
       JAVA_VERSION: "11.0"
       FLUTTER_VERSION: "3.13.2"
     steps:
-      # - uses: actions/checkout@v2
-      # - uses: actions/setup-java@v1
-      #   with:
-      #     java-version: "11.0"
-      # - uses: subosito/flutter-action@v1
-      #   with:
-      #     flutter-version: "3.19.2"
-      # - run: flutter pub get
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "11.0"
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.19.2"
+      - run: flutter pub get
       # - run: flutter analyze
       # - run: flutter test
-      # - run: flutter build apk --release
+      - run: flutter build apk --release
       # Add a step to upload the preview to quill
       - uses: quilldevtools/quill-flutter-action@main
         with:
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
           pkg-name: "com.example.flutter_calculator"
-          api-key: "a2eb0e1b-647f-11ef-9627-0242ac120003"
+          api-key: ${{secrets.QUILL_API_KEY}}
