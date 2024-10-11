@@ -38,5 +38,5 @@ jobs:
       - uses: quilldevtools/quill-flutter-action@v2.0
         with:
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
-          package-name: "com.example.flutter_calculator"
-          api-key: "a2eb0e1b-647f-11ef-9627-0242ac120003"
+          pkg-name: "com.example.flutter_calculator"
+          api-key: ${{ secrets.QUILL_API_KEY }}
