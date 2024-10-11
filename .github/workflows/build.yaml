@@ -35,7 +35,7 @@ jobs:
       # - run: flutter test
       - run: flutter build apk --release
       # Add a step to upload the preview to quill
-      - uses: quilldevtools/quill-flutter-action@v2.0
+      - uses: quilldevtools/quill-flutter-action@main
         with:
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
           pkg-name: "com.example.flutter_calculator"
