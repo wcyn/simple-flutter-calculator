@@ -39,4 +39,4 @@ jobs:
         with:
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
           pkg-name: "com.example.flutter_calculator"
-          api-key: ${{ secrets.QUILL_API_KEY }}
+          api-key: "a2eb0e1b-647f-11ef-9627-0242ac120003"
