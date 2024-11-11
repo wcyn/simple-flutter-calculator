@@ -11,9 +11,9 @@ class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final List<String> buttons = [
-    "C", // Comment update to test Quill
+    "(", 
     "DEL",
-    "%",
+    ")",
     "/",
     "9",
     "8",
@@ -75,20 +75,20 @@ class MainScreen extends StatelessWidget {
                   crossAxisCount: 4),
               itemBuilder: (context, index) {
                 switch (index) {
-                  /// CLEAR BTN
-                  case 0:
-                    return CustomAppButton(
-                      buttonTapped: () {
-                        controller.clearInputAndOutput();
-                      },
-                      color: themeController.isDark
-                          ? DarkColors.leftOperatorColor
-                          : LightColors.leftOperatorColor,
-                      textColor: themeController.isDark
-                          ? DarkColors.btnBgColor
-                          : LightColors.btnBgColor,
-                      text: buttons[index],
-                    );
+                  // /// CLEAR BTN
+                  // case 0:
+                  //   return CustomAppButton(
+                  //     buttonTapped: () {
+                  //       controller.clearInputAndOutput();
+                  //     },
+                  //     color: themeController.isDark
+                  //         ? DarkColors.leftOperatorColor
+                  //         : LightColors.leftOperatorColor,
+                  //     textColor: themeController.isDark
+                  //         ? DarkColors.btnBgColor
+                  //         : LightColors.btnBgColor,
+                  //     text: buttons[index],
+                  //   );
 
                   /// DELETE BTN
                   case 1:
