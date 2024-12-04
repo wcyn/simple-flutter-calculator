@@ -14,7 +14,7 @@ class ThemeController extends GetxController {
 
   darkTheme() {
     isDark = true;
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     update();
   }
 
