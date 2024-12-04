@@ -1,13 +1,16 @@
 # This is a basic workflow to help you get started with Actions
 name: Releases
-permissions:
-  pull-requests: write
-# Controls when the workflow will run
+# Controls when the workflow will run. It is recommended to run it when a pull request is
+# opened and when the pull request code is updated (synchronized)
 on:
-  # Triggers the workflow on pull request events
   pull_request:
+    types: [opened, synchronize]
     branches:
       - "main"
+permissions:
+  pull-requests: write # Needed to add comments to the Pull Request that triggered the build
+  actions: write # Needed to cancel a workflow when it no longer needs to run
+  
 
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,27 +34,9 @@ jobs:
       # - run: flutter analyze
       # - run: flutter test
       - run: flutter build apk --release
-      # - uses: ncipollo/release-action@v1
-      #   with:
-      #     artifacts: "build/app/outputs/flutter-apk/*.apk"
-      #     token: ${{ vars.TOKEN }}
-      - uses: hkusu/s3-upload-action@v2
-        id: upload
+      # Add a step to upload the preview to quill
+      - uses: quilldevtools/quill-flutter-action@main
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: "us-east-1"
-          aws-bucket: "quill-apks"
-          file-path: "build/app/outputs/flutter-apk/app-release.apk"
-          output-file-url: "true"
-      - name: "Base64 encoding"
-        id: encoding
-        run: |
-          out="${{ steps.upload.outputs.file-url }}"
-          encodedURL=$(echo $out | base64 -w 0)
-          echo "URL=$encodedURL" >> $GITHUB_OUTPUT
-      - uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            [QA Review On Quill](https://app.getquill.dev?owner=${{ github.repository_owner }}&repo=${{ github.event.repository.name }}&pr_number=${{ github.event.number }}&pkg=com.example.flutter_calculator&url=${{ steps.encoding.outputs.URL }}&git_host=github)
-
+          app-path: "build/app/outputs/flutter-apk/app-release.apk"
+          pkg-name: "com.example.flutter_calculator"
+          api-key: ${{secrets.QUILL_API_KEY}}
