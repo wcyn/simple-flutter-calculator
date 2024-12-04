@@ -3,6 +3,10 @@ name: Releases
 # Controls when the workflow will run. It is recommended to run it when a pull request is
 # opened and when the pull request code is updated (synchronized)
 on:
+  push:
+    branches:
+      - "main"
+
   pull_request:
     types: [opened, synchronize]
     branches:
