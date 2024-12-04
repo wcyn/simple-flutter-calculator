@@ -10,7 +10,6 @@ on:
 permissions:
   pull-requests: write # Needed to add comments to the Pull Request that triggered the build
   actions: write # Needed to cancel a workflow when it no longer needs to run
-  
 
   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,7 +34,7 @@ jobs:
       # - run: flutter test
       - run: flutter build apk --release
       # Add a step to upload the preview to quill
-      - uses: quilldevtools/quill-flutter-action@main
+      - uses: quilldevtools/preview@main
         with:
           app-path: "build/app/outputs/flutter-apk/app-release.apk"
           pkg-name: "com.example.flutter_calculator"
